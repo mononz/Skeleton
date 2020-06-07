@@ -9,24 +9,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import timber.log.Timber;
 
-/**
- * Stetho utils class
- */
 public class AppStartup {
 
-    /**
-     * Application context
-     * @param application Application
-     */
     public static void start(Application application) {
         Timber.plant(new Timber.DebugTree());
         Stetho.initializeWithDefaults(application);
     }
 
-    /**
-     * Install interceptors
-     * @return OkHttpClient.Builder
-     */
     public static OkHttpClient.Builder installInterceptors(OkHttpClient.Builder builder) {
 
         // Create a logging interceptor for debug builds only

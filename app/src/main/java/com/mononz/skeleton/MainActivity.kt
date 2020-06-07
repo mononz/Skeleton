@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
-import com.mononz.skeleton.databinding.MainActivityBinding
+import com.mononz.skeleton.databinding.MainBinding
 import com.mononz.skeleton.extensions.setupWithNavController
 import com.mononz.skeleton.injection.FragmentInjectionFactory
 import dagger.android.AndroidInjection
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
     @Inject lateinit var fragmentFactory: FragmentInjectionFactory
 
-    private lateinit var binding: MainActivityBinding
+    private lateinit var binding: MainBinding
 
     private var navController: LiveData<NavController>? = null
 
