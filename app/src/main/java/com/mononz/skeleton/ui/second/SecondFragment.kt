@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,6 +15,10 @@ import com.mononz.skeleton.base.BaseFragment
 import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.controller.Analytics.Companion.SCREEN_SECOND
 import com.mononz.skeleton.databinding.SecondBinding
+import com.mononz.skeleton.data.Status.ERROR
+import com.mononz.skeleton.data.Status.LOADING
+import com.mononz.skeleton.data.Status.SUCCESS
+import timber.log.Timber
 import javax.inject.Inject
 
 class SecondFragment @Inject constructor(
@@ -34,6 +39,7 @@ class SecondFragment @Inject constructor(
         if (!::binding.isInitialized) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_second, container, false)
             binding.lifecycleOwner = this
+            binding.fragment = this
         }
 
         binding.textSecond.text = "Came from: ${args.from}"
@@ -52,5 +58,22 @@ class SecondFragment @Inject constructor(
         screenName = SCREEN_SECOND
 
         analytics.trackScreen(activity, screenName)
+    }
+
+    fun buttonPress() {
+        viewModel.createSkeleton("anything").observe(viewLifecycleOwner, Observer {
+            Timber.d(it.status.name)
+            when (it.status) {
+                LOADING -> {
+                    binding.response.text = "Loading..."
+                }
+                SUCCESS -> {
+                    binding.response.text = "API Success"
+                }
+                ERROR -> {
+                    binding.response.text = it.error?.message ?: "API Error"
+                }
+            }
+        })
     }
 }

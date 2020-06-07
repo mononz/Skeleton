@@ -14,7 +14,7 @@ import timber.log.Timber
 enum class NetworkErrors(var title: String) {
 
     NO_NETWORK("No network access"),
-    UNKNOWN("Unknown Error"),
+    UNKNOWN("Something went wrong :("),
     NETWORK_CHANGE("Network changed"),
     UNAVAILABLE("Server Unavailable"),
     TIMEOUT("Timeout"),
