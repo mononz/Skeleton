@@ -1,11 +1,12 @@
 package com.mononz.skeleton
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import com.mononz.skeleton.databinding.MainActivityBinding
 import com.mononz.skeleton.extensions.setupWithNavController
 import com.mononz.skeleton.injection.FragmentInjectionFactory
 import dagger.android.AndroidInjection
@@ -19,12 +20,17 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
     @Inject lateinit var fragmentFactory: FragmentInjectionFactory
 
+    private lateinit var binding: MainActivityBinding
+
     private var navController: LiveData<NavController>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.lifecycleOwner = this
 
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
@@ -46,7 +52,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
 
     private fun setupBottomNavigationBar() {
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
+        val bottomNavigationView = binding.navView
         val navGraphIds = listOf(
             R.navigation.nav_home,
             R.navigation.nav_dashboard,
