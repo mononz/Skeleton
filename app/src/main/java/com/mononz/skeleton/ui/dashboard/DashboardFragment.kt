@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.mononz.skeleton.R
 import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.databinding.DashboardBinding
@@ -30,6 +31,7 @@ class DashboardFragment @Inject constructor(
         if (!::binding.isInitialized) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
             binding.lifecycleOwner = this
+            binding.fragment = this
         }
 
         viewModel.text.observe(viewLifecycleOwner, Observer {
@@ -42,5 +44,10 @@ class DashboardFragment @Inject constructor(
     override fun onResume() {
         super.onResume()
         analytics.trackScreen(activity, "Dashboard")
+    }
+
+    fun nextScreen() {
+        val action = DashboardFragmentDirections.actionDashToSecond("Dashboard")
+        findNavController().navigate(action)
     }
 }

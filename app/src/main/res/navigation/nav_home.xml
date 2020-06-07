@@ -9,6 +9,22 @@
         android:id="@+id/navigation_home"
         android:name="com.mononz.skeleton.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_second"
+            app:destination="@id/destSecond" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/destSecond"
+        android:name="com.mononz.skeleton.ui.second.SecondFragment"
+        android:label="Second"
+        tools:layout="@layout/fragment_second">
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+
+    </fragment>
 
 </navigation>

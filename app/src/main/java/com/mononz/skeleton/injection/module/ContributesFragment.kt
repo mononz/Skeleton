@@ -7,13 +7,13 @@ import com.mononz.skeleton.injection.FragmentKey
 import com.mononz.skeleton.ui.dashboard.DashboardFragment
 import com.mononz.skeleton.ui.home.HomeFragment
 import com.mononz.skeleton.ui.notifications.NotificationsFragment
+import com.mononz.skeleton.ui.second.SecondFragment
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
 abstract class ContributesFragment {
-
 
     @Binds
     @IntoMap
@@ -29,6 +29,12 @@ abstract class ContributesFragment {
     @IntoMap
     @FragmentKey(NotificationsFragment::class)
     abstract fun bindNotificationsFragment(fragment: NotificationsFragment): Fragment
+
+    @Binds
+    @IntoMap
+    @FragmentKey(SecondFragment::class)
+    abstract fun bindSecondFragment(fragment: SecondFragment): Fragment
+
 
     // fragment factory
 
