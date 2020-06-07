@@ -6,10 +6,13 @@ Sample Android app showcasing use of
  - Databinding
  - Retrofit
  - FragmentFactory
- - Navigation component (bottom navigation)
- - Separate backstacks
+ - Navigation component
+ - Bottom Navigation with separate backstacks
  - Firebase analytics/crashlytics
- - Testing (coming soon)
+
+Coming soon
+ - Testing
+ - CI/Distribution with AppCenter
 
 Build using Android Studio v4.0
 
@@ -28,3 +31,14 @@ Add corresponding google-services.json files into
 
 Copy the key.properties.template file to key.properties
  - Signing config and environment variables can be added here and applied in app/build.gradle
+
+
+### Code format
+
+Keep code looking nice! Run ktlint with gradle
+
+```
+./gradlew ktlintFormat
+```
+
+Format xml by right clicking on the /res folder and selecting 'Reformat Code'
