@@ -15,52 +15,70 @@
 
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <androidx.core.widget.NestedScrollView
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="ifContentScrolls"
-            android:scrollbars="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="16dp"
-                android:paddingBottom="128dp">
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/title_home" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/skeletons"
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="ifContentScrolls"
+                android:scrollbars="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="50dp"
-                    android:nestedScrollingEnabled="false"
-                    android:overScrollMode="never"
-                    android:scrollbars="none"
-                    app:layoutManager="com.mononz.skeleton.utils.LinearLayoutManagerWrapper"
-                    tools:itemCount="1"
-                    tools:listitem="@layout/skeleton_element" />
+                    android:orientation="vertical"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="128dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:textSize="12sp"
-                    android:textStyle="italic"
-                    android:visibility="@{source.length() > 0}"
-                    android:text="@{`Source: ` + source}"
-                    android:onClick="@{() -> fragment.goToSource(source)}"
-                    tools:text="Source: "/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/skeletons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="50dp"
+                        android:nestedScrollingEnabled="false"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        app:layoutManager="com.mononz.skeleton.utils.LinearLayoutManagerWrapper"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/skeleton_element" />
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:visibility="@{source.length() > 0}"
+                        android:text="@{`Source: ` + source}"
+                        android:onClick="@{() -> fragment.goToSource(source)}"
+                        tools:text="Source: "/>
 
-        </androidx.core.widget.NestedScrollView>
+                </LinearLayout>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
 
 </layout>

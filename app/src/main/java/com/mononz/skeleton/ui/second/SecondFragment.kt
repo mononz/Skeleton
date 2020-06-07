@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mononz.skeleton.R
 import com.mononz.skeleton.base.BaseFragment
@@ -36,6 +37,12 @@ class SecondFragment @Inject constructor(
         }
 
         binding.textSecond.text = "Came from: ${args.from}"
+
+        binding.toolbar.apply {
+            setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
 
         return binding.root
     }

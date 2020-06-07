@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mononz.skeleton.R
 import com.mononz.skeleton.base.BaseFragment
@@ -39,6 +40,12 @@ class DetailFragment @Inject constructor(
 
         binding.obj = viewModel.getSkeleton(args.id) ?: SkeletonResponse(-1, "Skeleton Not Found", null, null)
         binding.source = viewModel.getSkeletonSource()
+
+        binding.toolbar.apply {
+            setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
 
         return binding.root
     }
