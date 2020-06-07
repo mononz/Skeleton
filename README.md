@@ -19,7 +19,7 @@ Coming soon
 Build using Android Studio v4.0
 
 
-### Project Setup
+## Project Setup
 
 Create firebase android apps for 
  - com.mononz.skeleton
@@ -35,7 +35,7 @@ Copy the key.properties.template file to key.properties
  - Signing config and environment variables can be added here and applied in app/build.gradle
 
 
-### Code format
+## Code format
 
 Keep code looking nice! Run ktlint with gradle
 
@@ -46,6 +46,6 @@ Keep code looking nice! Run ktlint with gradle
 Format xml by right clicking on the /res folder and selecting 'Reformat Code'
 
 
-### Video
+## Video
 
 ![app](https://raw.githubusercontent.com/mononz/Skeleton/master/art/video.gif)
