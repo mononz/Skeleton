@@ -21,5 +21,4 @@ interface Network {
     fun createSkeleton(
         @Body body: FakeRequest
     ): Deferred<Unit>
-
 }

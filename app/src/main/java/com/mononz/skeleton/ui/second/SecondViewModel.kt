@@ -7,10 +7,10 @@ import com.mononz.skeleton.data.Resource
 import com.mononz.skeleton.data.SingleLiveEvent
 import com.mononz.skeleton.data.request.FakeRequest
 import com.mononz.skeleton.extensions.asNetworkError
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class SecondViewModel @Inject constructor(
     private val network: Network

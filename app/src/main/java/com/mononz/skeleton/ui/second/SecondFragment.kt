@@ -14,12 +14,12 @@ import com.mononz.skeleton.R
 import com.mononz.skeleton.base.BaseFragment
 import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.controller.Analytics.Companion.SCREEN_SECOND
-import com.mononz.skeleton.databinding.SecondBinding
 import com.mononz.skeleton.data.Status.ERROR
 import com.mononz.skeleton.data.Status.LOADING
 import com.mononz.skeleton.data.Status.SUCCESS
-import timber.log.Timber
+import com.mononz.skeleton.databinding.SecondBinding
 import javax.inject.Inject
+import timber.log.Timber
 
 class SecondFragment @Inject constructor(
     private val analytics: Analytics,
