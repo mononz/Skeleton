@@ -1,5 +1,7 @@
 # Skeleton Android Application
 
+![app](https://raw.githubusercontent.com/mononz/Skeleton/master/art/skeleton.png)
+
 Sample Android app showcasing use of
  - Dagger2
  - MVVM
@@ -42,3 +44,8 @@ Keep code looking nice! Run ktlint with gradle
 ```
 
 Format xml by right clicking on the /res folder and selecting 'Reformat Code'
+
+
+### Video
+
+![app](https://raw.githubusercontent.com/mononz/Skeleton/master/art/video.gif)
