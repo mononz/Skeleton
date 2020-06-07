@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentFactory
 import com.mononz.skeleton.injection.FragmentInjectionFactory
 import com.mononz.skeleton.injection.FragmentKey
 import com.mononz.skeleton.ui.dashboard.DashboardFragment
+import com.mononz.skeleton.ui.detail.DetailFragment
 import com.mononz.skeleton.ui.home.HomeFragment
 import com.mononz.skeleton.ui.notifications.NotificationsFragment
 import com.mononz.skeleton.ui.second.SecondFragment
@@ -35,7 +36,10 @@ abstract class ContributesFragment {
     @FragmentKey(SecondFragment::class)
     abstract fun bindSecondFragment(fragment: SecondFragment): Fragment
 
-    // fragment factory
+    @Binds
+    @IntoMap
+    @FragmentKey(DetailFragment::class)
+    abstract fun bindDetailFragment(fragment: DetailFragment): Fragment
 
     @Binds
     abstract fun bindFragmentFactory(factory: FragmentInjectionFactory): FragmentFactory

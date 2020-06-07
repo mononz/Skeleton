@@ -8,19 +8,27 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.mononz.skeleton.R
 import com.mononz.skeleton.base.BaseFragment
 import com.mononz.skeleton.controller.Analytics
+import com.mononz.skeleton.controller.Analytics.Companion.SCREEN_HOME
+import com.mononz.skeleton.data.Status.ERROR
+import com.mononz.skeleton.data.Status.LOADING
+import com.mononz.skeleton.data.Status.SUCCESS
+import com.mononz.skeleton.data.response.SkeletonResponse
 import com.mononz.skeleton.databinding.HomeBinding
 import javax.inject.Inject
+import timber.log.Timber
 
 class HomeFragment @Inject constructor(
     private val analytics: Analytics,
     private val viewModelFactory: ViewModelProvider.Factory
-) : BaseFragment(analytics) {
+) : BaseFragment(analytics), SwipeRefreshLayout.OnRefreshListener, HomeAdapter.Callback {
 
     private lateinit var binding: HomeBinding
+
+    private val mAdapter = HomeAdapter()
 
     private val viewModel: HomeViewModel by viewModels {
         viewModelFactory
@@ -34,21 +42,59 @@ class HomeFragment @Inject constructor(
             binding.fragment = this
         }
 
-        viewModel.text.observe(viewLifecycleOwner, Observer {
-            binding.textHome.text = it
+        binding.skeletons.apply {
+            adapter = mAdapter.apply {
+                this.setCallback(this@HomeFragment)
+            }
+            setHasFixedSize(true)
+        }
+
+        binding.swipeRefreshLayout.setOnRefreshListener(this)
+
+        viewModel.observeSkeletons().observe(viewLifecycleOwner, Observer {
+            Timber.d(it.status.name)
+            binding.swipeRefreshLayout.isRefreshing = it.status == LOADING
+            when (it.status) {
+                LOADING -> { }
+                SUCCESS -> {
+                    val data = it.data ?: return@Observer
+                    mAdapter.setData(data.skeletons ?: emptyList())
+                    binding.source = data.source ?: ""
+                }
+                ERROR -> {
+                    toast(it.error)
+                }
+            }
         })
 
         return binding.root
     }
 
     override fun onResume() {
-        screenName = "Home"
         super.onResume()
+        screenName = SCREEN_HOME
+
+        analytics.trackScreen(activity, screenName)
+
+        if (mAdapter.itemCount == 0) {
+            viewModel.updateSkeleton(true)
+        }
     }
 
-    fun nextScreen() {
-        analytics.trackNextScreen(screenName)
-        val action = HomeFragmentDirections.actionHomeToSecond(screenName)
-        findNavController().navigate(action)
+    override fun onRefresh() {
+        Timber.d("onRefresh")
+        viewModel.updateSkeleton(false)
+    }
+
+    override fun itemSelected(skeleton: SkeletonResponse, position: Int) {
+        analytics.clickSkeleton(skeleton)
+        skeleton.id?.let {
+            val action = HomeFragmentDirections.actionHomeToDetail(it)
+            navigate(action)
+        }
+    }
+
+    fun goToSource(source: String) {
+        openWebsite(source)
     }
 }

@@ -1,17 +1,21 @@
 package com.mononz.skeleton.ui.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mononz.skeleton.controller.Session
+import com.mononz.skeleton.controller.Repository
+import com.mononz.skeleton.data.Resource
+import com.mononz.skeleton.data.response.SkeletonDataResponse
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    private val session: Session
+    private val repository: Repository
 ) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "App has been opened ${session.getAppOpenCounter()} times"
+    fun observeSkeletons(): MutableLiveData<Resource<SkeletonDataResponse>> {
+        return repository.skeletons
     }
-    val text: LiveData<String> = _text
+
+    fun updateSkeleton(showLoading: Boolean) {
+        repository.updateSkeleton(showLoading)
+    }
 }

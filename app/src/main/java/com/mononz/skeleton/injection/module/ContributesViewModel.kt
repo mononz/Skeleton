@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.mononz.skeleton.injection.ViewModelFactory
 import com.mononz.skeleton.injection.ViewModelKey
 import com.mononz.skeleton.ui.dashboard.DashboardViewModel
+import com.mononz.skeleton.ui.detail.DetailViewModel
 import com.mononz.skeleton.ui.home.HomeViewModel
 import com.mononz.skeleton.ui.notifications.NotificationsViewModel
 import com.mononz.skeleton.ui.second.SecondViewModel
@@ -34,6 +35,11 @@ abstract class ContributesViewModel {
     @IntoMap
     @ViewModelKey(SecondViewModel::class)
     internal abstract fun bindsSecondViewModel(model: SecondViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel::class)
+    internal abstract fun bindsDetailViewModel(model: DetailViewModel): ViewModel
 
     @Binds
     internal abstract fun bindsViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory

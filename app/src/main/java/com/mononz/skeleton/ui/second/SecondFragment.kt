@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.mononz.skeleton.R
 import com.mononz.skeleton.base.BaseFragment
 import com.mononz.skeleton.controller.Analytics
+import com.mononz.skeleton.controller.Analytics.Companion.SCREEN_SECOND
 import com.mononz.skeleton.databinding.SecondBinding
 import javax.inject.Inject
 
@@ -40,7 +41,9 @@ class SecondFragment @Inject constructor(
     }
 
     override fun onResume() {
-        screenName = "Second"
         super.onResume()
+        screenName = SCREEN_SECOND
+
+        analytics.trackScreen(activity, screenName)
     }
 }

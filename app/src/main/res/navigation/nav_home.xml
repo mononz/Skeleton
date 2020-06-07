@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_home_to_second"
             app:destination="@id/destSecond" />
+        <action
+            android:id="@+id/action_home_to_detail"
+            app:destination="@id/destDetail" />
     </fragment>
 
     <fragment
@@ -24,6 +27,18 @@
         <argument
             android:name="from"
             app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/destDetail"
+        android:name="com.mononz.skeleton.ui.detail.DetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="id"
+            app:argType="long" />
 
     </fragment>
 
