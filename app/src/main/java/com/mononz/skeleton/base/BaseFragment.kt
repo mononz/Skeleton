@@ -15,5 +15,4 @@ abstract class BaseFragment constructor(
         if (screenName.isNotEmpty())
             analytics.trackScreen(activity, screenName)
     }
-
 }

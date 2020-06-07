@@ -32,15 +32,15 @@
             tools:text="Notifications" />
 
         <Button
+            style="@style/Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next Screen"
             android:layout_marginTop="16dp"
-            style="@style/Button"
-            app:layout_constraintTop_toBottomOf="@+id/text_notifications"
+            android:onClick="@{() -> fragment.nextScreen()}"
+            android:text="Next Screen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:onClick="@{() -> fragment.nextScreen()}"/>
+            app:layout_constraintTop_toBottomOf="@+id/text_notifications" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

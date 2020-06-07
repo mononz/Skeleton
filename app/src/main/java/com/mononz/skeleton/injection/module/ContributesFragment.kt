@@ -35,10 +35,8 @@ abstract class ContributesFragment {
     @FragmentKey(SecondFragment::class)
     abstract fun bindSecondFragment(fragment: SecondFragment): Fragment
 
-
     // fragment factory
 
     @Binds
     abstract fun bindFragmentFactory(factory: FragmentInjectionFactory): FragmentFactory
-
 }

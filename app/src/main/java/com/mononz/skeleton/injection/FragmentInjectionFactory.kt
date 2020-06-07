@@ -2,9 +2,9 @@ package com.mononz.skeleton.injection
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
-import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Provider
+import timber.log.Timber
 
 /**
  * Based on https://github.com/alex-townsend/FragmentFactoryDaggerSample/blob/0f89cb3b38983d5868f9aa183f02e47ca44869ef/app/src/main/java/com/atownsend/fragmentfactorysample/di/factory/InjectingFragmentFactory.kt

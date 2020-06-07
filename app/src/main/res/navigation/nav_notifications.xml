@@ -9,7 +9,7 @@
         android:id="@+id/navigation_notifications"
         android:name="com.mononz.skeleton.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" >
+        tools:layout="@layout/fragment_notifications">
         <action
             android:id="@+id/action_notifications_to_second"
             app:destination="@id/destSecond" />

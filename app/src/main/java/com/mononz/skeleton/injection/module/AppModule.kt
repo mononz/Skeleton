@@ -23,5 +23,4 @@ class AppModule {
     internal fun providesFirebase(application: Application): Analytics {
         return Analytics(application)
     }
-
 }
