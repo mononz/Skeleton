@@ -11,7 +11,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "App has been opened ${session.getAppOpenCounter()} times"
     }
     val text: LiveData<String> = _text
 }
