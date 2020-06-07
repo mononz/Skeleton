@@ -1,0 +1,5 @@
+keyAlias=debug
+keyPassword=debugkey
+storeFile=../.debug.jks
+storePassword=debugkey
+testValue=test
