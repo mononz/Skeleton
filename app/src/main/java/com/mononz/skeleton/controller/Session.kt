@@ -8,9 +8,11 @@ class Session(private val sharedPreferences: SharedPreferences) {
         return sharedPreferences.getInt(APP_OPEN_COUNTER, 0)
     }
 
-    fun incrementAppOpenCounter() {
+    fun incrementAppOpenCounter(): Int {
         val count = getAppOpenCounter()
-        saveData(sharedPreferences, APP_OPEN_COUNTER, count + 1)
+        val newCount = count + 1
+        saveData(sharedPreferences, APP_OPEN_COUNTER, newCount)
+        return newCount
     }
 
     // =============================================================================================

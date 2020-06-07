@@ -34,7 +34,7 @@ android {
 
     defaultConfig {
         applicationId 'com.mononz.skeleton'
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName '1.0.0'

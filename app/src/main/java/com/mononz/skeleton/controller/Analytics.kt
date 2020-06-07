@@ -14,28 +14,22 @@ import javax.inject.Singleton
 class Analytics @Inject
 constructor(context: Application) {
 
-    private val analytics = Firebase.analytics
-
     init {
         Timber.d("Initialising firebase")
         FirebaseApp.initializeApp(context)
     }
 
-    fun sayHello(): String {
-        return "Hello"
-    }
-
     fun trackScreen(activity: Activity?, screenName: String) {
-        analytics.setCurrentScreen(activity ?: return, screenName, null)
+        Firebase.analytics.setCurrentScreen(activity ?: return, screenName, null)
     }
 
-    fun trackLogin(email: String) {
-        analytics.logEvent("login") {
-            param("email", email)
+    fun trackNextScreen(from: String) {
+        Firebase.analytics.logEvent("next_screen") {
+            param("from", from)
         }
     }
 
     fun setUserProperty(property: String, value: String) {
-        analytics.setUserProperty(property, value)
+        Firebase.analytics.setUserProperty(property, value)
     }
 }

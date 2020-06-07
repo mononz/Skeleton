@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mononz.skeleton.R
+import com.mononz.skeleton.base.BaseFragment
 import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.databinding.DashboardBinding
 import javax.inject.Inject
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class DashboardFragment @Inject constructor(
     private val analytics: Analytics,
     private val viewModelFactory: ViewModelProvider.Factory
-) : Fragment() {
+) : BaseFragment(analytics) {
 
     private lateinit var binding: DashboardBinding
 
@@ -42,12 +42,13 @@ class DashboardFragment @Inject constructor(
     }
 
     override fun onResume() {
+        screenName = "Dashboard"
         super.onResume()
-        analytics.trackScreen(activity, "Dashboard")
     }
 
     fun nextScreen() {
-        val action = DashboardFragmentDirections.actionDashToSecond("Dashboard")
+        analytics.trackNextScreen(screenName)
+        val action = DashboardFragmentDirections.actionDashToSecond(screenName)
         findNavController().navigate(action)
     }
 }

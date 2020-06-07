@@ -2,7 +2,16 @@
 <resources>
     <color name="background">#ffffff</color>
 
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#FF5722</color>
+
+    <color name="bottomBarBackground">#f3f3f3</color>
+
+    <color name="primaryText">#de000000</color>
+    <color name="secondaryText">#8c000000</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="grey">#666666</color>
 </resources>

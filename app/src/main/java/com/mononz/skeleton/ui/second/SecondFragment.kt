@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.mononz.skeleton.R
+import com.mononz.skeleton.base.BaseFragment
 import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.databinding.SecondBinding
 import javax.inject.Inject
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class SecondFragment @Inject constructor(
     private val analytics: Analytics,
     private val viewModelFactory: ViewModelProvider.Factory
-) : Fragment() {
+) : BaseFragment(analytics) {
 
     private lateinit var binding: SecondBinding
 
@@ -40,7 +40,7 @@ class SecondFragment @Inject constructor(
     }
 
     override fun onResume() {
+        screenName = "Second"
         super.onResume()
-        analytics.trackScreen(activity, "Notifications")
     }
 }

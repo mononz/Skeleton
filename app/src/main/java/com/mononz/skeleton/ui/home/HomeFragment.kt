@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mononz.skeleton.R
+import com.mononz.skeleton.base.BaseFragment
 import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.databinding.HomeBinding
 import javax.inject.Inject
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class HomeFragment @Inject constructor(
     private val analytics: Analytics,
     private val viewModelFactory: ViewModelProvider.Factory
-) : Fragment() {
+) : BaseFragment(analytics) {
 
     private lateinit var binding: HomeBinding
 
@@ -42,12 +42,13 @@ class HomeFragment @Inject constructor(
     }
 
     override fun onResume() {
+        screenName = "Home"
         super.onResume()
-        analytics.trackScreen(activity, "Home")
     }
 
     fun nextScreen() {
-        val action = HomeFragmentDirections.actionHomeToSecond("Home")
+        analytics.trackNextScreen(screenName)
+        val action = HomeFragmentDirections.actionHomeToSecond(screenName)
         findNavController().navigate(action)
     }
 }

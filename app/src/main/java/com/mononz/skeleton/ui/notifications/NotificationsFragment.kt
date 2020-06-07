@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mononz.skeleton.R
+import com.mononz.skeleton.base.BaseFragment
 import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.databinding.NotificationsBinding
 import javax.inject.Inject
@@ -18,7 +19,7 @@ import javax.inject.Inject
 class NotificationsFragment @Inject constructor(
     private val analytics: Analytics,
     private val viewModelFactory: ViewModelProvider.Factory
-) : Fragment() {
+) : BaseFragment(analytics) {
 
     private lateinit var binding: NotificationsBinding
 
@@ -42,12 +43,13 @@ class NotificationsFragment @Inject constructor(
     }
 
     override fun onResume() {
+        screenName = "Notifications"
         super.onResume()
-        analytics.trackScreen(activity, "Notifications")
     }
 
     fun nextScreen() {
-        val action = NotificationsFragmentDirections.actionNotificationsToSecond("Notifications")
+        analytics.trackNextScreen(screenName)
+        val action = NotificationsFragmentDirections.actionNotificationsToSecond(screenName)
         findNavController().navigate(action)
     }
 }
