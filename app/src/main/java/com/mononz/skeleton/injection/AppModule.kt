@@ -1,4 +1,4 @@
-package com.mononz.skeleton.injection.module
+package com.mononz.skeleton.injection
 
 import android.app.Application
 import android.content.Context
@@ -14,13 +14,16 @@ import com.mononz.skeleton.data.NetworkInterceptor
 import com.mononz.skeleton.utils.AppStartup
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-@Module(includes = [ContributesViewModel::class])
-class AppModule {
+@Module
+@InstallIn(ApplicationComponent::class)
+object AppModule {
 
     @Provides
     @Singleton

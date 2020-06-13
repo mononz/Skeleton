@@ -7,24 +7,18 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.mononz.skeleton.R
 import com.mononz.skeleton.base.BaseFragment
-import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.controller.Analytics.Companion.SCREEN_DASHBOARD
 import com.mononz.skeleton.databinding.DashboardBinding
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class DashboardFragment @Inject constructor(
-    private val analytics: Analytics,
-    private val viewModelFactory: ViewModelProvider.Factory
-) : BaseFragment(analytics) {
+@AndroidEntryPoint
+class DashboardFragment : BaseFragment() {
 
     private lateinit var binding: DashboardBinding
 
-    private val viewModel: DashboardViewModel by viewModels {
-        viewModelFactory
-    }
+    private val viewModel: DashboardViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

@@ -4,16 +4,18 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.mononz.skeleton.R
 import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.data.ErrorObject
+import javax.inject.Inject
 
-abstract class BaseFragment constructor(
-    private val analytics: Analytics
-) : Fragment() {
+abstract class BaseFragment : Fragment() {
+
+    @Inject lateinit var analytics: Analytics
 
     var screenName = ""
 

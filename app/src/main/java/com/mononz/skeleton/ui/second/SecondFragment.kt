@@ -7,30 +7,24 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mononz.skeleton.R
 import com.mononz.skeleton.base.BaseFragment
-import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.controller.Analytics.Companion.SCREEN_SECOND
 import com.mononz.skeleton.data.Status.ERROR
 import com.mononz.skeleton.data.Status.LOADING
 import com.mononz.skeleton.data.Status.SUCCESS
 import com.mononz.skeleton.databinding.SecondBinding
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-class SecondFragment @Inject constructor(
-    private val analytics: Analytics,
-    private val viewModelFactory: ViewModelProvider.Factory
-) : BaseFragment(analytics) {
+@AndroidEntryPoint
+class SecondFragment : BaseFragment() {
 
     private lateinit var binding: SecondBinding
 
-    private val viewModel: SecondViewModel by viewModels {
-        viewModelFactory
-    }
+    private val viewModel: SecondViewModel by viewModels()
 
     private val args: SecondFragmentArgs by navArgs()
 

@@ -1,5 +1,6 @@
 package com.mononz.skeleton.ui.home
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mononz.skeleton.controller.Repository
@@ -7,7 +8,7 @@ import com.mononz.skeleton.data.Resource
 import com.mononz.skeleton.data.response.SkeletonDataResponse
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(
+class HomeViewModel @ViewModelInject constructor(
     private val repository: Repository
 ) : ViewModel() {
 

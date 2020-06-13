@@ -6,27 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mononz.skeleton.R
 import com.mononz.skeleton.base.BaseFragment
-import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.controller.Analytics.Companion.SCREEN_DETAIL
 import com.mononz.skeleton.data.response.SkeletonResponse
 import com.mononz.skeleton.databinding.DetailBinding
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class DetailFragment @Inject constructor(
-    private val analytics: Analytics,
-    private val viewModelFactory: ViewModelProvider.Factory
-) : BaseFragment(analytics) {
+@AndroidEntryPoint
+class DetailFragment : BaseFragment() {
 
     private lateinit var binding: DetailBinding
 
-    private val viewModel: DetailViewModel by viewModels {
-        viewModelFactory
-    }
+    private val viewModel: DetailViewModel by viewModels()
 
     private val args: DetailFragmentArgs by navArgs()
 

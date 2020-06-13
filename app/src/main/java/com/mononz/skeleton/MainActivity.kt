@@ -8,24 +8,16 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import com.mononz.skeleton.databinding.MainBinding
 import com.mononz.skeleton.extensions.setupWithNavController
-import com.mononz.skeleton.injection.FragmentInjectionFactory
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity(), HasAndroidInjector {
-
-    @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
-    @Inject lateinit var fragmentFactory: FragmentInjectionFactory
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: MainBinding
 
     private var navController: LiveData<NavController>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
 
@@ -35,10 +27,6 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
-    }
-
-    override fun androidInjector(): AndroidInjector<Any> {
-        return androidInjector
     }
 
     override fun onDestroy() {
@@ -60,7 +48,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         )
 
         val fragmentManager = supportFragmentManager
-        fragmentManager.fragmentFactory = fragmentFactory
+        //fragmentManager.fragmentFactory = fragmentFactory
 
         // Setup the bottom navigation view with a list of navigation graphs
         val controller = bottomNavigationView.setupWithNavController(

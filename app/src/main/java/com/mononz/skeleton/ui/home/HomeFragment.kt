@@ -7,32 +7,26 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.mononz.skeleton.R
 import com.mononz.skeleton.base.BaseFragment
-import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.controller.Analytics.Companion.SCREEN_HOME
 import com.mononz.skeleton.data.Status.ERROR
 import com.mononz.skeleton.data.Status.LOADING
 import com.mononz.skeleton.data.Status.SUCCESS
 import com.mononz.skeleton.data.response.SkeletonResponse
 import com.mononz.skeleton.databinding.HomeBinding
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-class HomeFragment @Inject constructor(
-    private val analytics: Analytics,
-    private val viewModelFactory: ViewModelProvider.Factory
-) : BaseFragment(analytics), SwipeRefreshLayout.OnRefreshListener, HomeAdapter.Callback {
+@AndroidEntryPoint
+class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, HomeAdapter.Callback {
 
     private lateinit var binding: HomeBinding
 
     private val mAdapter = HomeAdapter()
 
-    private val viewModel: HomeViewModel by viewModels {
-        viewModelFactory
-    }
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

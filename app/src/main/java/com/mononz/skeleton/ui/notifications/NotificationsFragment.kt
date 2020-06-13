@@ -7,24 +7,18 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.mononz.skeleton.R
 import com.mononz.skeleton.base.BaseFragment
-import com.mononz.skeleton.controller.Analytics
 import com.mononz.skeleton.controller.Analytics.Companion.SCREEN_NOTIFICATIONS
 import com.mononz.skeleton.databinding.NotificationsBinding
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class NotificationsFragment @Inject constructor(
-    private val analytics: Analytics,
-    private val viewModelFactory: ViewModelProvider.Factory
-) : BaseFragment(analytics) {
+@AndroidEntryPoint
+class NotificationsFragment : BaseFragment() {
 
     private lateinit var binding: NotificationsBinding
 
-    private val viewModel: NotificationsViewModel by viewModels {
-        viewModelFactory
-    }
+    private val viewModel: NotificationsViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

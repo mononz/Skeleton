@@ -1,12 +1,13 @@
 package com.mononz.skeleton.ui.dashboard
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mononz.skeleton.controller.Session
 import javax.inject.Inject
 
-class DashboardViewModel @Inject constructor(
+class DashboardViewModel @ViewModelInject constructor(
     private val session: Session
 ) : ViewModel() {
 
